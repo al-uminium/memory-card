@@ -1,9 +1,17 @@
 import React from 'react';
+import Card from './Card';
+import ScoreBoard from './ScoreBoard';
+import StageBoard from './StageBoard';
+import './styles/GameBoard.css'
 
 const GameBoard = () => {
     return (
-        <div>
-            placeholder
+        <div className='GameBoard'>
+            <StageBoard />
+            <div className='card-board'>
+                <Card />
+            </div>
+            <ScoreBoard />
         </div>
     );
 }

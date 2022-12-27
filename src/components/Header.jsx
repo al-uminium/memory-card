@@ -1,11 +1,15 @@
-
+import logo from '../icons/logo.svg'
+import reset from '../icons/reset.svg'
+import './styles/Header.css'
 
 const Header = () => {
     return (
         <div className='Header'>
-            <img className='logo' alt='logo'></img>
-            <div className='header-title'>Memory Card Game</div>
-            <img className='restart-button' alt='restart button'></img>
+            <div className='logo-wrapper'>
+                <img className='logo' alt='logo' src={logo}></img>
+                <div className='header-title'>Memory Card Game</div>
+            </div>
+            <img className='restart-button' alt='restart button' src={reset}></img>
         </div>
     );
 }
