@@ -13,7 +13,6 @@ const GameBoard = () => {
                 <Card />
                 <Card />
                 <Card />
-                {/* <Card />
                 <Card />
                 <Card />
                 <Card />
@@ -24,7 +23,8 @@ const GameBoard = () => {
                 <Card />
                 <Card />
                 <Card />
-                <Card /> */}
+                <Card />
+                <Card />
             </div>
             <ScoreBoard />
         </div>

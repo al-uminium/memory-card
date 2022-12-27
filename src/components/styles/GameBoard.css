@@ -13,7 +13,7 @@
     grid-template-columns: repeat(4, var(--cardwidth));
     grid-auto-rows: var(--cardheight);
     column-gap: 1rem;
-    row-gap: 0.5rem;
+    row-gap: 1rem;
     justify-content: center;
     overflow: auto;
     padding: 2.5rem 1rem;
