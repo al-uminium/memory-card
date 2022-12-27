@@ -1,0 +1,10 @@
+.card-wrapper {
+    height: var(--cardheight);
+    width: 10rem;
+    background-color: var(--light-blue);
+    border-radius: 5px;
+}
+
+.card-wrapper:hover {
+    cursor: pointer;
+}

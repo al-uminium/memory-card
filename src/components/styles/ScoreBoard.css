@@ -1,0 +1,13 @@
+.ScoreBoard {
+    border-bottom: var(--tileheight) solid var(--gold);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    height: 0;
+    width: 15rem;
+    justify-self: center;
+    text-align: center;
+    vertical-align: middle;
+    line-height: var(--tileheight);
+    color: var(--black);
+    font-size: 1.5rem;
+}

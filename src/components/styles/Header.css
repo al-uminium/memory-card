@@ -3,6 +3,10 @@
     width: 100%;
     height: 100%;
     justify-content: space-between;
+    background-color: var(--navy);
+    color: var(--offwhite);
+    font-size: 2rem;
+    padding-right: 2rem;
 }
 
 .logo-wrapper {
@@ -15,8 +19,30 @@
     width: 100%;
 }
 
+.button-wrapper {
+    height: 100%;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .restart-button {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: var(--headerheight);
+    width: var(--headerheight);
+    align-self: center;
+    /* padding-right: 2rem; */
+    transition: transform .3s ease-in-out;
+}
+
+.restart-button:hover {
+    cursor: pointer;
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+
+.header-title {
+    font-family: 'Fredoka One', cursive;
+    width: 12rem;
     align-self: center;
 }

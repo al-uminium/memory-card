@@ -10,6 +10,21 @@ const GameBoard = () => {
             <StageBoard />
             <div className='card-board'>
                 <Card />
+                <Card />
+                <Card />
+                <Card />
+                {/* <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card /> */}
             </div>
             <ScoreBoard />
         </div>

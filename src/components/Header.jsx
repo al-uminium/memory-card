@@ -9,7 +9,9 @@ const Header = () => {
                 <img className='logo' alt='logo' src={logo}></img>
                 <div className='header-title'>Memory Card Game</div>
             </div>
-            <img className='restart-button' alt='restart button' src={reset}></img>
+            <div className='button-wrapper'>
+                <img className='restart-button' alt='restart button' src={reset}></img>
+            </div>
         </div>
     );
 }

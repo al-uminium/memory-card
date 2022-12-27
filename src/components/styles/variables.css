@@ -3,5 +3,18 @@
     --cardheight: 12rem;
     --cardwidth: 10rem;
 
+    /* Header properties */
+    --headerheight: 2.5rem;
+
     /* GameBoard properties */
+    --tileheight: 3rem;
+
+    /* Colours */
+    --gold: #e9c704;
+    --offblack: #1f2123;
+    --offwhite: #FAF9F6;
+    --black: #101010;
+    --navy: #1a74e2;
+    --blue: #3fa0ef;
+    --light-blue: #6bd0ff; 
 }

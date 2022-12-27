@@ -1,0 +1,26 @@
+.StageBoard-wrapper {
+    position: relative;
+    height: var(--tileheight);
+    display: flex;
+    justify-content: center;
+    color: var(--black);
+    font-size: 1.5rem;
+}
+
+.StageBoard {
+    border-top: var(--tileheight) solid var(--gold);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    height: 0;
+    width: 15rem;
+}
+
+.StageBoard-wrapper > span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25%;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+}
