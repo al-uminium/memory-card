@@ -3,8 +3,15 @@
     width: 10rem;
     background-color: var(--light-blue);
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .card-wrapper:hover {
     cursor: pointer;
+}
+
+.sprite-image {
+    height: 80%;
+    align-self: center;
 }

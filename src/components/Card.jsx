@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles/Card.css'
+import './styles/Card.css';
 
-const Card = () => {
-    return (
-        <div className='card-wrapper'>
-            this is a card
-        </div>
-    );
+function Card({ url }) {
+  return (
+    <div className="card-wrapper">
+      <img alt="sprite" src={url} className="sprite-image" />
+    </div>
+  );
 }
 
 export default Card;
