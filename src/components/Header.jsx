@@ -1,12 +1,13 @@
 import logo from '../icons/logo.svg'
 import reset from '../icons/reset.svg'
+import sitrus from '../icons/sitrusberry.png'
 import './styles/Header.css'
 
 const Header = () => {
     return (
         <div className='Header'>
             <div className='logo-wrapper'>
-                <img className='logo' alt='logo' src={logo}></img>
+                <img className='logo' alt='logo' src={sitrus}></img>
                 <div className='header-title'>Memory Card Game</div>
             </div>
             <div className='button-wrapper'>
