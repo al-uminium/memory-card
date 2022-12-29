@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import uniqid from 'uniqid'
 import Card from './Card';
 import ScoreBoard from './ScoreBoard';
 import StageBoard from './StageBoard';
@@ -7,6 +8,8 @@ import './styles/GameBoard.css';
 function GameBoard() {
   const [berrySpriteURLs, setBerrySpriteURLs] = useState([]);
   const [loadState, setLoadingState] = useState('');
+  const [currentStageBerries, setCurrentStageBerries] = useState([]);
+  const [selectedBerries, setSelectedBerries] = useState([]);
   const [stage, setStage] = useState(1);
   const [score, setScore] = useState(0);
 
@@ -37,6 +40,36 @@ function GameBoard() {
     return urlArray;
   };
 
+  const shuffleCards = () => {
+    let currentIndex = currentStageBerries.length-1;
+    let randomIndex;
+    let shuffledArray = currentStageBerries;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * (currentIndex+1));
+      console.log(`rand: ${randomIndex}, curr: ${currentIndex}`);
+      [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[currentIndex]];
+      console.log(shuffledArray)
+      currentIndex -= 1;
+    }
+    setCurrentStageBerries(shuffledArray);
+  }
+
+  const playerChoice = (berry) => {
+    const selectedBerry = berry.target.id;
+    if (selectedBerries.includes(selectedBerry)) {
+      gameOver();
+    } else {
+      const updatedBerryArr = selectedBerries.concat(selectedBerry);
+      setSelectedBerries(updatedBerryArr);
+      shuffleCards();
+    }
+  }
+
+  const gameOver = () => {
+    // placeholder function
+    console.log("Game Over weee")
+  }
+
   useEffect(() => {
     const getBerryURLs = async () => {
       setLoadingState('loading');
@@ -47,7 +80,12 @@ function GameBoard() {
         const data = await Promise.all(res.map((d) => d.json()));
         const berrySpriteURL = [];
         data.forEach((obj) => {
-          berrySpriteURL.push(obj.sprites.default);
+          berrySpriteURL.push(
+            {
+              url:obj.sprites.default,
+              id: uniqid(),
+            }
+          );
         });
         setBerrySpriteURLs(berrySpriteURL);
         setLoadingState('loaded');
@@ -55,15 +93,31 @@ function GameBoard() {
         console.log(e.toString());
       }
     };
-
     getBerryURLs();
   },[])
+
+  useEffect(() => {
+    const getCurrentStageBerries = () => {
+      const currentStageBerries = berrySpriteURLs.slice(0, stage*4);
+      setCurrentStageBerries(currentStageBerries)
+    }
+    getCurrentStageBerries()
+  }, [berrySpriteURLs,stage])
+
 
   return (
     <div className="GameBoard">
       <StageBoard />
       <div className="card-board">
-        {loadState==='loaded'? berrySpriteURLs.slice(0, stage*4).map((url) => <Card url={url} />) : null}
+        {loadState==='loaded'? currentStageBerries.map((sprite) => 
+          <Card
+            key={sprite.id} 
+            url={sprite.url} 
+            id={sprite.id} 
+            playerChoice={playerChoice} />) 
+          : 
+          null
+        }
       </div>
       <ScoreBoard />
     </div>
