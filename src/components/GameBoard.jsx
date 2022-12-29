@@ -12,6 +12,8 @@ function GameBoard() {
   const [selectedBerries, setSelectedBerries] = useState([]);
   const [stage, setStage] = useState(1);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [isGameOver, setGameOver] = useState(false);
 
   const getBerryArray = (num = 40) => {
     // berry item no starts from 126, ends at 189.
@@ -61,13 +63,24 @@ function GameBoard() {
     } else {
       const updatedBerryArr = selectedBerries.concat(selectedBerry);
       setSelectedBerries(updatedBerryArr);
+      const newScore = score+1;
+      if (newScore > score) {
+        setBestScore(newScore);
+      }
+      setScore(newScore);
       shuffleCards();
     }
   }
 
   const gameOver = () => {
     // placeholder function
-    console.log("Game Over weee")
+    console.log("Game Over");
+    setGameOver(true);
+  }
+
+  const restartGame = () => {
+    setStage(1);
+    setScore(0);
   }
 
   useEffect(() => {
@@ -90,6 +103,7 @@ function GameBoard() {
         setBerrySpriteURLs(berrySpriteURL);
         setLoadingState('loaded');
       } catch (e) {
+        setLoadingState('error');
         console.log(e.toString());
       }
     };
@@ -104,12 +118,19 @@ function GameBoard() {
     getCurrentStageBerries()
   }, [berrySpriteURLs,stage])
 
+  // checks if score hits next stage.
+  useEffect(() => {
+    if (score===(stage*4)) {
+      const nextStage = stage + 1;
+      setStage(nextStage);
+    }
+  },[stage, score]);
 
   return (
     <div className="GameBoard">
-      <StageBoard />
+      <StageBoard stage={stage} />
       <div className="card-board">
-        {loadState==='loaded'? currentStageBerries.map((sprite) => 
+        {loadState==='loaded' ? currentStageBerries.map((sprite) => 
           <Card
             key={sprite.id} 
             url={sprite.url} 
@@ -119,7 +140,7 @@ function GameBoard() {
           null
         }
       </div>
-      <ScoreBoard />
+      <ScoreBoard score={score} />
     </div>
   );
 }

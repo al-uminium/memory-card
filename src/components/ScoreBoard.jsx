@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles/ScoreBoard.css';
 
-function ScoreBoard() {
+function ScoreBoard({ score, bestScore }) {
   return (
     <div className="ScoreBoard">
-      Current Score: 0
+      Current Score: {score}
     </div>
   );
 }

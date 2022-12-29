@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles/Stageboard.css';
 
-function StageBoards() {
+function StageBoards({ stage }) {
   return (
     <div className="StageBoard-wrapper">
       <div className="StageBoard" />
-      <span>Stage 1</span>
+      <span>Stage {stage}</span>
     </div>
   );
 }
