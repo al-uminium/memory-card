@@ -1,6 +1,5 @@
 .GameBoard {
     height: 100%;
-    background-color: aliceblue;
     display: grid;
     grid-template-rows: var(--tileheight) auto var(--tileheight);
     justify-content: center;
