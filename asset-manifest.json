@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/memory-card-game/static/css/main.7550b0c5.css",
+    "main.js": "/memory-card-game/static/js/main.0f86d6fd.js",
+    "static/media/sitrusberry.png": "/memory-card-game/static/media/sitrusberry.8d43badec3adb6fa8680.png",
+    "index.html": "/memory-card-game/index.html",
+    "static/media/info.svg": "/memory-card-game/static/media/info.9920c914daf7b95db495e11f9b84dc23.svg",
+    "main.7550b0c5.css.map": "/memory-card-game/static/css/main.7550b0c5.css.map",
+    "main.0f86d6fd.js.map": "/memory-card-game/static/js/main.0f86d6fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7550b0c5.css",
+    "static/js/main.0f86d6fd.js"
+  ]
+}
