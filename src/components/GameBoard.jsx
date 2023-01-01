@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import uniqid from 'uniqid'
 import Card from './Card';
+import GameOver from './GameOver';
 import ScoreBoard from './ScoreBoard';
 import StageBoard from './StageBoard';
 import './styles/GameBoard.css';
@@ -14,8 +15,9 @@ function GameBoard() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
+  const [isGameWon, setGameWon] = useState(false);
 
-  const getBerryArray = (num = 40) => {
+  const getBerryArray = (num = 20) => {
     // berry item no starts from 126, ends at 189.
     const max = 189;
     const min = 126;
@@ -58,29 +60,42 @@ function GameBoard() {
 
   const playerChoice = (berry) => {
     const selectedBerry = berry.target.id;
-    if (selectedBerries.includes(selectedBerry)) {
-      gameOver();
-    } else {
-      const updatedBerryArr = selectedBerries.concat(selectedBerry);
-      setSelectedBerries(updatedBerryArr);
-      const newScore = score+1;
-      if (newScore > score) {
-        setBestScore(newScore);
+    setTimeout(() => {
+      if (selectedBerries.includes(selectedBerry)) {
+        gameOver();
+        return
+      } else {
+        const maxScore = 20;
+        const updatedBerryArr = selectedBerries.concat(selectedBerry);
+        setSelectedBerries(updatedBerryArr)
+        const newScore = score+1;
+        if (newScore > bestScore) {
+          setBestScore(newScore);
+        }
+        setScore(newScore);
+        if (score===maxScore) {
+          setGameWon(true)
+        }
       }
-      setScore(newScore);
-      shuffleCards();
-    }
+    },500)
+    shuffleCards()
   }
 
   const gameOver = () => {
-    // placeholder function
     console.log("Game Over");
-    setGameOver(true);
+    // setGameOver(true);
+  }
+
+  const gameWon = () => {
+    setGameWon(true);
   }
 
   const restartGame = () => {
     setStage(1);
     setScore(0);
+    setSelectedBerries([]);
+    setGameOver(false);
+    setGameWon(false);
   }
 
   useEffect(() => {
@@ -128,19 +143,28 @@ function GameBoard() {
 
   return (
     <div className="GameBoard">
-      <StageBoard stage={stage} />
-      <div className="card-board">
-        {loadState==='loaded' ? currentStageBerries.map((sprite) => 
-          <Card
-            key={sprite.id} 
-            url={sprite.url} 
-            id={sprite.id} 
-            playerChoice={playerChoice} />) 
-          : 
-          null
-        }
-      </div>
-      <ScoreBoard score={score} />
+      {isGameOver ? 
+        <GameOver 
+          score={score} 
+          bestScore={bestScore}
+          restartGame={restartGame}
+          gameWon={isGameWon}
+        />
+      :
+      (<>
+        <StageBoard stage={stage} />
+        <div className="card-board">
+          {loadState === 'loaded' ? currentStageBerries.map((sprite) => <Card
+            key={sprite.id}
+            url={sprite.url}
+            id={sprite.id}
+            playerChoice={playerChoice} />)
+            :
+            null}
+        </div>
+        <ScoreBoard score={score} />
+        </>
+      )}
     </div>
   );
 }
