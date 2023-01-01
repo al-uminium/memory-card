@@ -83,11 +83,7 @@ function GameBoard() {
 
   const gameOver = () => {
     console.log("Game Over");
-    // setGameOver(true);
-  }
-
-  const gameWon = () => {
-    setGameWon(true);
+    setGameOver(true);
   }
 
   const restartGame = () => {
@@ -135,7 +131,10 @@ function GameBoard() {
 
   // checks if score hits next stage.
   useEffect(() => {
-    if (score===(stage*4)) {
+    if (score===4) {
+      setGameOver(true)
+      setGameWon(true);
+    } else if (score===(stage*4)) {
       const nextStage = stage + 1;
       setStage(nextStage);
     }
