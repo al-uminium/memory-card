@@ -131,7 +131,7 @@ function GameBoard() {
 
   // checks if score hits next stage.
   useEffect(() => {
-    if (score===4) {
+    if (score===20) {
       setGameOver(true)
       setGameWon(true);
     } else if (score===(stage*4)) {
@@ -159,7 +159,12 @@ function GameBoard() {
             id={sprite.id}
             playerChoice={playerChoice} />)
             :
-            null}
+            <>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </>}
         </div>
         <ScoreBoard score={score} />
         </>
